@@ -2,9 +2,9 @@ import winSetBuilder from '../winSetBuilder'
 
 export default class {
   constructor(config) {
-    this.boardSpaces = [...Array(config.dimension*config.dimension).keys()]
-    this.availableBoardSpaces = [...this.boardSpaces]
-    this.players = [ { moves: [] }, { moves: [] } ]
+    this.boardSpaces = new Map([...Array(config.dimension*config.dimension).keys()].map(i => [i]))
+    this.availableBoardSpaces = Array.from(this.boardSpaces.keys())
+    this.players = [ { moves: [], marker: 'X' }, { moves: [], marker: 'O' } ]
     this.winningSets = winSetBuilder(config.dimension)
     this.activePlayer = this.players[0]
     this.gameOver = false
@@ -20,16 +20,21 @@ export default class {
   }
 
   takeTurn(boardSpace) {
-    if (this.isBoardSpaceValid(boardSpace)) {
+    const boardSpaceIndex = this.availableBoardSpaces.indexOf(boardSpace)
+
+    if (boardSpaceIndex >= 0) {
       this.activePlayer.moves.push(boardSpace)
+      this.availableBoardSpaces.splice(boardSpaceIndex, 1)
+      this.boardSpaces.set(boardSpace, this.activePlayer.marker)
       this.checkWinCondition() ? this.endGame() : this.toggleActivePlayer()
     } else {
       alert('This space has already been taken')
     }
   }
 
-  isBoardSpaceValid(boardSpace) {
-    return this.availableBoardSpaces.indexOf(boardSpace) >= 0
+  endGame() {
+    alert('Game Over')
+    this.gameOver = true
   }
 }
 

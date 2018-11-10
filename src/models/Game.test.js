@@ -9,7 +9,17 @@ describe('Game', () => {
 
   describe('constructor', () => {
     it('generates board spaces based on the dimension config', () => {
-      expect(game.boardSpaces).toEqual([0,1,2,3,4,5,6,7,8])
+      expect(game.boardSpaces).toEqual(new Map([
+        [0, undefined],
+        [1, undefined],
+        [2, undefined],
+        [3, undefined],
+        [4, undefined],
+        [5, undefined],
+        [6, undefined],
+        [7, undefined],
+        [8, undefined],
+      ]))
     })
 
     it('generates an array of available board spaces', () => {
@@ -66,10 +76,24 @@ describe('Game', () => {
       actingPlayer = game.players[0]
     })
 
-    describe('when the position is valid', () => {
+    describe('when the board space is invalid', () => {
+      it('alerts that the space has been taken', () => {
+        window.alert = jest.fn().mockName('alert')
+        game.availableBoardSpaces = []
+        game.takeTurn(0)
+        expect(alert).toHaveBeenCalledWith('This space has already been taken')
+      })
+    })
+
+    describe('when the board space is valid', () => {
       it('adds the given board space to the active player\'s moves', () => {
         game.takeTurn(0)
         expect(actingPlayer.moves[0]).toEqual(0)
+      })
+
+      it('removes the board space from the available board spaces', () => {
+        game.takeTurn(0)
+        expect(game.availableBoardSpaces.indexOf(0)).toEqual(-1)
       })
 
       it('checks the win condition', () => {
@@ -118,17 +142,20 @@ describe('Game', () => {
     })
   })
 
-  describe('isBoardSpaceValid', () => {
+  describe('endGame', () => {
     beforeEach(() => {
-      game.availableBoardSpaces = [0]
+      window.alert = jest.fn().mockName('alert')
     })
 
-    it('returns true if the position is in the available positions', () => {
-      expect(game.isBoardSpaceValid(0)).toEqual(true)
+    it('sets game over to true', () => {
+      game.gameOver = false
+      game.endGame()
+      expect(game.gameOver).toEqual(true)
     })
 
-    it('returns false if the position is not in the available positions', () => {
-      expect(game.isBoardSpaceValid(1)).toEqual(false)
+    it('alerts that the game is over', () => {
+      game.endGame()
+      expect(window.alert).toHaveBeenCalledWith('Game Over')
     })
   })
 })
