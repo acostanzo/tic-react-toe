@@ -2,12 +2,8 @@ import buildWinningSets from '../helpers/buildWinningSets'
 
 export default class {
   constructor(config) {
-    this.boardSpaces = new Map([...Array(config.dimension*config.dimension).keys()].map(i => [i]))
-    this.availableBoardSpaces = Array.from(this.boardSpaces.keys())
-    this.players = [ { moves: [], marker: 'X' }, { moves: [], marker: 'O' } ]
-    this.winningSets = buildWinningSets(config.dimension)
-    this.activePlayer = this.players[0]
-    this.gameOver = false
+    this.dimension = config.dimension
+    this.reset()
   }
 
   checkWinCondition() {
@@ -26,25 +22,53 @@ export default class {
       this.activePlayer.moves.push(boardSpace)
       this.availableBoardSpaces.splice(boardSpaceIndex, 1)
       this.boardSpaces.set(boardSpace, this.activePlayer.marker)
-      this.checkWinCondition() ? this.endGame(this.activePlayer) : this.toggleActivePlayer()
-      if (!this.availableBoardSpaces.length) this.endGame(false)
+
+      if (this.checkWinCondition()) {
+        this.endGame(this.activePlayer)
+      } else if(!this.availableBoardSpaces.length) {
+        this.endGame(false)
+      } else  {
+        this.toggleActivePlayer()
+      }
+
     } else {
       alert('This space has already been taken')
     }
   }
 
   endGame(winner) {
+    this.winner = winner
     this.gameOver = true
-    if (winner) {
-      alert(`Game Over: Player ${this.players.indexOf(winner) + 1} Wins!`)
-    } else {
-      alert('Game Over: It\'s a draw!')
-    }
+  }
+
+  reset() {
+    Object.assign(this, getInitialGameState(this.dimension))
+  }
+}
+
+function getInitialGameState(dimension) {
+  const boardSpaces = new Map([...Array(dimension*dimension).keys()].map(i => [i]))
+  const availableBoardSpaces = Array.from(boardSpaces.keys())
+  const players = [
+    { name: 'Player 1', moves: [], marker: 'X' },
+    { name: 'Player 2', moves: [], marker: 'O' },
+  ]
+  const winningSets = buildWinningSets(dimension)
+  const activePlayer = players[0]
+  const gameOver = false
+
+  return {
+    boardSpaces,
+    availableBoardSpaces,
+    players,
+    winningSets,
+    activePlayer,
+    gameOver,
   }
 }
 
 function movesIncludeFullSet(moves, set) {
-  return set.every((position) => {
+  return set.every(position => {
     return moves.indexOf(position) >= 0
   })
 }

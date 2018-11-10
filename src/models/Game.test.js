@@ -3,43 +3,56 @@ import Game from './Game'
 describe('Game', () => {
   let game
 
+  const players = [
+    { name: 'Player 1', moves: [], marker: 'X' },
+    { name: 'Player 2', moves: [], marker: 'O' },
+  ]
+
+  const initialGameState = {
+    boardSpaces: new Map([
+      [0, undefined],
+      [1, undefined],
+      [2, undefined],
+      [3, undefined],
+      [4, undefined],
+      [5, undefined],
+      [6, undefined],
+      [7, undefined],
+      [8, undefined],
+    ]),
+    availableBoardSpaces: [0,1,2,3,4,5,6,7,8],
+    players: players,
+    winningSets: [
+      // Horizontal Wins
+      [0,1,2],
+      [3,4,5],
+      [6,7,8],
+
+
+      // Vertical Wins
+      [0,3,6],
+      [1,4,7],
+      [2,5,8],
+
+      // Diagonal Wins
+      [0,4,8],
+      [6,4,2],
+    ],
+    activePlayer: players[0],
+    gameOver: false,
+  }
+
   beforeEach(() => {
     game = new Game({ dimension: 3 })
   })
 
   describe('constructor', () => {
-    it('generates board spaces based on the dimension config', () => {
-      expect(game.boardSpaces).toEqual(new Map([
-        [0, undefined],
-        [1, undefined],
-        [2, undefined],
-        [3, undefined],
-        [4, undefined],
-        [5, undefined],
-        [6, undefined],
-        [7, undefined],
-        [8, undefined],
-      ]))
+    it('sets the dimension from the config on the instance', () => {
+      expect(game.dimension).toEqual(3)
     })
 
-    it('generates an array of available board spaces', () => {
-      expect(game.availableBoardSpaces).toEqual([0,1,2,3,4,5,6,7,8])
-    })
-
-    it('generates two players on the instance', () => {
-      expect(game.players.length).toEqual(2)
-    })
-
-    it('generates winning sets on the instance', () => {
-      expect(game.winningSets).toBeDefined()
-    })
-
-    it('sets the active player as the first player in the players array', () => {
-      expect(game.activePlayer).toEqual(game.players[0])
-    })
-
-    it('sets game over to false by default', () => {
-      expect(game.gameOver).toEqual(false)
+    it('resets the game', () => {
+      expect(game).toEqual(expect.objectContaining(initialGameState))
     })
   })
 
@@ -74,6 +87,9 @@ describe('Game', () => {
 
     beforeEach(() => {
       actingPlayer = game.players[0]
+    })
+
+    describe('when the board space is invalid', () => {
     })
 
     describe('when the board space is invalid', () => {
@@ -159,24 +175,32 @@ describe('Game', () => {
   })
 
   describe('endGame', () => {
-    beforeEach(() => {
-      window.alert = jest.fn().mockName('alert')
-    })
-
     it('sets game over to true', () => {
       game.gameOver = false
       game.endGame()
       expect(game.gameOver).toEqual(true)
     })
 
-    it('alerts that the game is over with a winner', () => {
+    it('sets the winner on the instance', () => {
       game.endGame(game.players[0])
-      expect(window.alert).toHaveBeenCalledWith('Game Over: Player 1 Wins!')
+      expect(game.winner).toEqual(game.players[0])
     })
+  })
 
-    it('alerts that the game is over without a winner', () => {
-      game.endGame()
-      expect(window.alert).toHaveBeenCalledWith('Game Over: It\'s a draw!')
+  describe('reset', () => {
+    it('sets the game back to its initial state', () => {
+    })
+  })
+
+  describe('reset', () => {
+    it('resets game elements back to the initial state', () => {
+      game.takeTurn(0)
+      game.takeTurn(1)
+      game.takeTurn(3)
+      game.takeTurn(4)
+      game.takeTurn(6)
+      game.reset()
+      expect(game).toEqual(expect.objectContaining(initialGameState))
     })
   })
 })
