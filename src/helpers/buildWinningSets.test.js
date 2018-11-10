@@ -1,8 +1,8 @@
-import winSetBuilder from './winSetBuilder'
+import buildWinningSets from './buildWinningSets'
 
-describe('winSetBuilder', () =>{
+describe('buildWinningSets', () =>{
   it('generates an array of winning sets for a default dimension of 3', () => {
-    expect(winSetBuilder()).toEqual([
+    expect(buildWinningSets()).toEqual([
       // Horizontal Wins
       [0,1,2],
       [3,4,5],
@@ -21,7 +21,7 @@ describe('winSetBuilder', () =>{
   })
 
   it('generates an array of winning sets for a given dimension', () => {
-    expect(winSetBuilder(4)).toEqual([
+    expect(buildWinningSets(4)).toEqual([
       // Horizontal Wins
       [0,1,2,3],
       [4,5,6,7],

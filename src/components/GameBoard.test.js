@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import GameBoard from './GameBoard'
-import GameModel from './models/Game'
+import GameModel from '../models/Game'
 
 describe('GameBoard', () => {
   const boardSpaces = new Map()

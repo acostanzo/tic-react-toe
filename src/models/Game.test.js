@@ -112,12 +112,28 @@ describe('Game', () => {
           game.takeTurn(0)
         })
 
-        it('ends the game when', () => {
+        it('ends the game', () => {
           expect(game.endGame).toHaveBeenCalled()
         })
 
         it('doesn\'t toggle the active player', () => {
           expect(game.toggleActivePlayer).not.toHaveBeenCalled()
+        })
+      })
+
+      describe('when the move will cause a draw', () => {
+        beforeEach(() => {
+          game.endGame = jest.fn().mockName('game.endGame')
+          game.toggleActivePlayer = jest.fn().mockName('game.toggleActivePlayer')
+          game.checkWinCondition = jest.fn(() => {
+            return false
+          }).mockName('game.checkWinCondition')
+          game.availableBoardSpaces = [0]
+          game.takeTurn(0)
+        })
+
+        it('ends the game when', () => {
+          expect(game.endGame).toHaveBeenCalledWith(false)
         })
       })
 
@@ -153,9 +169,14 @@ describe('Game', () => {
       expect(game.gameOver).toEqual(true)
     })
 
-    it('alerts that the game is over', () => {
+    it('alerts that the game is over with a winner', () => {
+      game.endGame(game.players[0])
+      expect(window.alert).toHaveBeenCalledWith('Game Over: Player 1 Wins!')
+    })
+
+    it('alerts that the game is over without a winner', () => {
       game.endGame()
-      expect(window.alert).toHaveBeenCalledWith('Game Over')
+      expect(window.alert).toHaveBeenCalledWith('Game Over: It\'s a draw!')
     })
   })
 })
