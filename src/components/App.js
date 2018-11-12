@@ -56,9 +56,12 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
-        {this.conditionallyRenderActivePlayer()}
-        {this.conditionallyRenderGameOver()}
+      <div className="app">
+        <div className="message-center">
+          {this.conditionallyRenderActivePlayer()}
+          {this.conditionallyRenderGameOver()}
+        </div>
+
         <GameBoard
           boardSpaces={this.state.boardSpaces}
           takeTurn={boardSpace => this.takeTurn(boardSpace)}

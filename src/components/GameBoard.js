@@ -5,12 +5,25 @@ import './GameBoard.css'
 class GameBoard extends Component {
 
   renderCell(key) {
+    const marker = this.props.boardSpaces.get(key)
     return (
       <div
         key={key}
         className="game-cell"
         onClick={ () => this.props.takeTurn(key) }
-      >{this.props.boardSpaces.get(key)}</div>
+      >
+        { marker ? this.renderMarker(marker) : '' }
+      </div>
+    )
+  }
+
+  renderMarker(marker) {
+    return (
+      <img
+        className="game-cell-marker"
+        src={`/marker_${marker}.png`}
+        alt={marker}
+      />
     )
   }
 
