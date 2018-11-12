@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { CSSTransitionGroup } from 'react-transition-group'
 import PropTypes from 'prop-types'
 import './GameBoard.css'
 
@@ -12,7 +13,15 @@ class GameBoard extends Component {
         className="game-cell"
         onClick={ () => this.props.takeTurn(key) }
       >
-        { marker ? this.renderMarker(marker) : '' }
+        <CSSTransitionGroup
+          className="game-cell-marker"
+          component="div"
+          transitionEnterTimeout={250}
+          transitionLeaveTimeout={250}
+          transitionName="game-cell-marker-transition"
+        >
+          { marker ? this.renderMarker(marker) : '' }
+        </CSSTransitionGroup>
       </div>
     )
   }
@@ -20,9 +29,10 @@ class GameBoard extends Component {
   renderMarker(marker) {
     return (
       <img
-        className="game-cell-marker"
-        src={`/marker_${marker}.png`}
         alt={marker}
+        height="100%"
+        src={`/marker_${marker}.png`}
+        width="100%"
       />
     )
   }
