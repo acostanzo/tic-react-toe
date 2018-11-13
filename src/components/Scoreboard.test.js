@@ -1,16 +1,12 @@
-import ActivePlayer from './ActivePlayer'
 import React from 'react'
 import ReactDOM from 'react-dom'
+import Scoreboard from './Scoreboard'
 
-describe('ActivePlayer', () => {
-  const player = {
-    name: 'Player 1',
-    marker: 'X',
-  }
-
+describe('Scoreboard', () => {
+  const players = [{}, {}]
   it('renders without crashing', () => {
     const div = document.createElement('div')
-    ReactDOM.render(<ActivePlayer player={player}/>, div)
+    ReactDOM.render(<Scoreboard players={players} />, div)
     ReactDOM.unmountComponentAtNode(div)
   })
 })

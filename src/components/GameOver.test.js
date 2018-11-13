@@ -1,6 +1,6 @@
+import GameOver from './GameOver'
 import React from 'react'
 import ReactDOM from 'react-dom'
-import GameOver from './GameOver'
 
 describe('GameOver', () => {
   const winner = {
