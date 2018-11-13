@@ -60,6 +60,7 @@ class App extends Component {
 
           <GameBoard
             boardSpaces={this.state.boardSpaces}
+            dimension={this.game.dimension}
             takeTurn={boardSpace => this.takeTurn(boardSpace)}
           />
         </div>

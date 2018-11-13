@@ -9,11 +9,18 @@ class GameBoard extends Component {
   renderCell(key) {
     const marker = this.props.boardSpaces.get(key)
 
+    // Evenly size and provide extra space between cells
+    const size = `calc(${100 / this.props.dimension}% - 2px)`
+
     return (
       <div
         key={key}
         className="game-cell"
         onClick={ () => this.props.takeTurn(key) }
+        style={{
+          width: size,
+          height: size,
+        }}
       >
         <CSSTransitionGroup
           className="game-cell-marker"
@@ -42,6 +49,7 @@ class GameBoard extends Component {
 GameBoard.propTypes = {
   boardSpaces: PropTypes.object,
   takeTurn: PropTypes.func,
+  dimension: PropTypes.number,
 }
 
 export default GameBoard
