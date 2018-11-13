@@ -1,12 +1,11 @@
-import React, { Component } from 'react'
 import './App.css'
-
-import ActivePlayer from './ActivePlayer'
 import GameBoard from './GameBoard'
-import GameOver from './GameOver'
-import ResetButton from './ResetButton'
-
 import GameModel from '../models/Game'
+import MessageCenter from './MessageCenter'
+import React, { Component } from 'react'
+import ResetButton from './ResetButton'
+import Scoreboard from './Scoreboard'
+import Title from './Title'
 
 class App extends Component {
 
@@ -17,8 +16,10 @@ class App extends Component {
   }
 
   takeTurn(boardSpace) {
-    this.game.takeTurn(boardSpace)
-    this.syncStateWithGame()
+    if (!this.game.gameOver) {
+      this.game.takeTurn(boardSpace)
+      this.syncStateWithGame()
+    }
   }
 
   resetGame() {
@@ -31,6 +32,7 @@ class App extends Component {
       activePlayer: this.game.activePlayer,
       boardSpaces: this.game.boardSpaces,
       gameOver: this.game.gameOver,
+      players: this.game.players,
       winner: this.game.winner,
     }
   }
@@ -44,29 +46,29 @@ class App extends Component {
     return this.state.gameOver ? resetButton: ''
   }
 
-  conditionallyRenderActivePlayer() {
-    const activePlayer = <ActivePlayer player={this.state.activePlayer} />
-    return this.state.gameOver ? '' : activePlayer
-  }
-
-  conditionallyRenderGameOver() {
-    const gameOver = <GameOver winner={this.state.winner} />
-    return this.state.gameOver ? gameOver : ''
-  }
-
   render() {
     return (
       <div className="app">
-        <div className="message-center">
-          {this.conditionallyRenderActivePlayer()}
-          {this.conditionallyRenderGameOver()}
+        <div className="app-column">
+          <Title />
+
+          <MessageCenter
+            activePlayer={this.state.activePlayer}
+            gameOver={this.state.gameOver}
+            winner={this.state.winner}
+          />
+
+          <GameBoard
+            boardSpaces={this.state.boardSpaces}
+            takeTurn={boardSpace => this.takeTurn(boardSpace)}
+          />
         </div>
 
-        <GameBoard
-          boardSpaces={this.state.boardSpaces}
-          takeTurn={boardSpace => this.takeTurn(boardSpace)}
-        />
-        {this.conditionallyRenderResetButton()}
+        <div className="app-column">
+          <Scoreboard players={this.state.players} />
+
+          {this.conditionallyRenderResetButton()}
+        </div>
       </div>
     )
   }

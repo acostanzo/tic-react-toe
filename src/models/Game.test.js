@@ -4,8 +4,8 @@ describe('Game', () => {
   let game
 
   const players = [
-    { name: 'Player 1', moves: [], marker: 'X' },
-    { name: 'Player 2', moves: [], marker: 'O' },
+    { name: 'Player 1', moves: [], marker: 'X', wins: 0 },
+    { name: 'Player 2', moves: [], marker: 'O', wins: 0 },
   ]
 
   const initialGameState = {
@@ -40,6 +40,7 @@ describe('Game', () => {
     ],
     activePlayer: players[0],
     gameOver: false,
+    winner: false,
   }
 
   beforeEach(() => {
@@ -193,14 +194,18 @@ describe('Game', () => {
   })
 
   describe('reset', () => {
-    it('resets game elements back to the initial state', () => {
+    it('resets game elements back to the initial state except for tracked wins', () => {
+      const endState = {...initialGameState}
+      endState.players[0].wins = 1;
+
       game.takeTurn(0)
       game.takeTurn(1)
       game.takeTurn(3)
       game.takeTurn(4)
       game.takeTurn(6)
       game.reset()
-      expect(game).toEqual(expect.objectContaining(initialGameState))
+
+      expect(game).toEqual(expect.objectContaining(endState))
     })
   })
 })

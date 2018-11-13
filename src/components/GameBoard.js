@@ -1,12 +1,14 @@
+import './GameBoard.css'
+import Marker from './Marker'
+import PropTypes from 'prop-types'
 import React, { Component } from 'react'
 import { CSSTransitionGroup } from 'react-transition-group'
-import PropTypes from 'prop-types'
-import './GameBoard.css'
 
 class GameBoard extends Component {
 
   renderCell(key) {
     const marker = this.props.boardSpaces.get(key)
+
     return (
       <div
         key={key}
@@ -20,27 +22,18 @@ class GameBoard extends Component {
           transitionLeaveTimeout={250}
           transitionName="game-cell-marker-transition"
         >
-          { marker ? this.renderMarker(marker) : '' }
+          { marker ? <Marker marker={marker} /> : '' }
         </CSSTransitionGroup>
       </div>
     )
   }
 
-  renderMarker(marker) {
-    return (
-      <img
-        alt={marker}
-        height="100%"
-        src={`/marker_${marker}.png`}
-        width="100%"
-      />
-    )
-  }
-
   render() {
+    const boardSpaceKeys = Array.from(this.props.boardSpaces.keys())
+
     return (
-      <div className="game-board">
-        { Array.from(this.props.boardSpaces.keys()).map((key) => this.renderCell(key)) }
+      <div className="game-board tile-floating">
+        { boardSpaceKeys.map(key => this.renderCell(key)) }
       </div>
     )
   }

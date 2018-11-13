@@ -1,11 +1,16 @@
-import React, { Component } from 'react'
+import './ResetButton.css'
 import PropTypes from 'prop-types'
+import React, { Component } from 'react'
 
 class ResetButton extends Component {
 
   render() {
     return (
-      <button onClick={this.props.reset}>Reset Game</button>
+      <div className="reset-button tile-floating">
+        <button onClick={this.props.reset}>
+          Reset Game
+        </button>
+      </div>
     )
   }
 }

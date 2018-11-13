@@ -1,10 +1,10 @@
-import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import React, { Component } from 'react'
 
 class GameOver extends Component {
 
   getWinMessage() {
-    return `Congratulations ${this.props.winner.name}, you won! Click the reset button to play again`
+    return `Congratulations ${this.props.winner.name}, you won! Click "Reset Game" to play again.`
   }
 
   getDrawMessage() {

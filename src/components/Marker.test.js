@@ -1,15 +1,12 @@
-import GameBoard from './GameBoard'
 import GameModel from '../models/Game'
+import Marker from './Marker'
 import React from 'react'
 import ReactDOM from 'react-dom'
 
-describe('GameBoard', () => {
-  const boardSpaces = new Map()
-  const takeTurn = function(){}
-
+describe('Marker', () => {
   it('renders without crashing', () => {
     const div = document.createElement('div')
-    ReactDOM.render(<GameBoard boardSpaces={boardSpaces} takeTurn={takeTurn}/>, div)
+    ReactDOM.render(<Marker marker='x' />, div)
     ReactDOM.unmountComponentAtNode(div)
   })
 })

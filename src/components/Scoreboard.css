@@ -1,0 +1,9 @@
+.scoreboard {
+  padding: 0 25px 25px;
+  margin-bottom: 25px;
+}
+
+.scoreboard table {
+  text-align: left;
+  width: 100%;
+}
