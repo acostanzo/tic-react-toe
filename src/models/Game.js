@@ -35,8 +35,6 @@ export default class {
         this.toggleActivePlayer()
       }
 
-    } else {
-      alert('This space has already been taken')
     }
   }
 

@@ -27,7 +27,7 @@ class GameBoard extends Component {
           component="div"
           transitionEnterTimeout={250}
           transitionLeaveTimeout={250}
-          transitionName="game-cell-marker-transition"
+          transitionName="scale-transition"
         >
           { marker ? <Marker marker={marker} /> : '' }
         </CSSTransitionGroup>

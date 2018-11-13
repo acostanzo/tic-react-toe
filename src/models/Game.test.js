@@ -90,18 +90,6 @@ describe('Game', () => {
       actingPlayer = game.players[0]
     })
 
-    describe('when the board space is invalid', () => {
-    })
-
-    describe('when the board space is invalid', () => {
-      it('alerts that the space has been taken', () => {
-        window.alert = jest.fn().mockName('alert')
-        game.availableBoardSpaces = []
-        game.takeTurn(0)
-        expect(alert).toHaveBeenCalledWith('This space has already been taken')
-      })
-    })
-
     describe('when the board space is valid', () => {
       it('adds the given board space to the active player\'s moves', () => {
         game.takeTurn(0)

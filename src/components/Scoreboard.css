@@ -3,7 +3,6 @@
   margin-bottom: 25px;
 }
 
-.scoreboard table {
-  text-align: left;
+.scoreboard .pure-table {
   width: 100%;
 }

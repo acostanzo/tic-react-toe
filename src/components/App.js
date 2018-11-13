@@ -6,6 +6,7 @@ import React, { Component } from 'react'
 import ResetButton from './ResetButton'
 import Scoreboard from './Scoreboard'
 import Title from './Title'
+import { CSSTransitionGroup } from 'react-transition-group'
 
 class App extends Component {
 
@@ -68,7 +69,14 @@ class App extends Component {
         <div className="app-column">
           <Scoreboard players={this.state.players} />
 
-          {this.conditionallyRenderResetButton()}
+          <CSSTransitionGroup
+            component="div"
+            transitionEnterTimeout={250}
+            transitionLeaveTimeout={250}
+            transitionName="scale-transition"
+          >
+            {this.conditionallyRenderResetButton()}
+          </CSSTransitionGroup>
         </div>
       </div>
     )

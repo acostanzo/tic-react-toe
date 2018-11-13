@@ -23,21 +23,3 @@
   height: 80%;
   width: 80%;
 }
-
-.game-cell-marker-transition-enter {
-  transform: scale(0);
-}
-
-.game-cell-marker-transition-enter.game-cell-marker-transition-enter-active {
-  transform: scale(1);
-  transition: transform 250ms ease;
-}
-
-.game-cell-marker-transition-leave {
-  transform: scale(1);
-}
-
-.game-cell-marker-transition-leave.game-cell-marker-transition-leave-active {
-  transform: scale(0);
-  transition: transform 250ms ease;
-}

@@ -7,7 +7,7 @@ class ResetButton extends Component {
   render() {
     return (
       <div className="reset-button tile-floating">
-        <button onClick={this.props.reset}>
+        <button className="pure-button" onClick={this.props.reset}>
           Reset Game
         </button>
       </div>
