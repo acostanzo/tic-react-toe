@@ -1,15 +1,15 @@
 {
-  "main.css": "/static/css/main.c9bfad03.chunk.css",
-  "main.js": "/static/js/main.6271b133.chunk.js",
-  "main.js.map": "/static/js/main.6271b133.chunk.js.map",
-  "static/css/1.375ba187.chunk.css": "/static/css/1.375ba187.chunk.css",
-  "static/js/1.3ca09be9.chunk.js": "/static/js/1.3ca09be9.chunk.js",
-  "static/js/1.3ca09be9.chunk.js.map": "/static/js/1.3ca09be9.chunk.js.map",
-  "runtime~main.js": "/static/js/runtime~main.229c360f.js",
-  "runtime~main.js.map": "/static/js/runtime~main.229c360f.js.map",
-  "static/css/1.375ba187.chunk.css.map": "/static/css/1.375ba187.chunk.css.map",
-  "static/css/main.c9bfad03.chunk.css.map": "/static/css/main.c9bfad03.chunk.css.map",
-  "index.html": "/index.html",
-  "precache-manifest.de57f7acd96dbdf72ceb8346314ea006.js": "/precache-manifest.de57f7acd96dbdf72ceb8346314ea006.js",
-  "service-worker.js": "/service-worker.js"
+  "main.css": "/acostanzo/tic-react-toe/static/css/main.c9bfad03.chunk.css",
+  "main.js": "/acostanzo/tic-react-toe/static/js/main.6271b133.chunk.js",
+  "main.js.map": "/acostanzo/tic-react-toe/static/js/main.6271b133.chunk.js.map",
+  "static/css/1.375ba187.chunk.css": "/acostanzo/tic-react-toe/static/css/1.375ba187.chunk.css",
+  "static/js/1.3ca09be9.chunk.js": "/acostanzo/tic-react-toe/static/js/1.3ca09be9.chunk.js",
+  "static/js/1.3ca09be9.chunk.js.map": "/acostanzo/tic-react-toe/static/js/1.3ca09be9.chunk.js.map",
+  "runtime~main.js": "/acostanzo/tic-react-toe/static/js/runtime~main.bc510cf7.js",
+  "runtime~main.js.map": "/acostanzo/tic-react-toe/static/js/runtime~main.bc510cf7.js.map",
+  "static/css/1.375ba187.chunk.css.map": "/acostanzo/tic-react-toe/static/css/1.375ba187.chunk.css.map",
+  "static/css/main.c9bfad03.chunk.css.map": "/acostanzo/tic-react-toe/static/css/main.c9bfad03.chunk.css.map",
+  "index.html": "/acostanzo/tic-react-toe/index.html",
+  "precache-manifest.3f5ed0d4ba0d89b137300a066bc3e947.js": "/acostanzo/tic-react-toe/precache-manifest.3f5ed0d4ba0d89b137300a066bc3e947.js",
+  "service-worker.js": "/acostanzo/tic-react-toe/service-worker.js"
 }
