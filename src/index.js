@@ -1,8 +1,10 @@
+import './index.css';
+import 'purecss/build/buttons.css'
+import 'purecss/build/tables.css'
+import * as serviceWorker from './serviceWorker';
+import App from './components/App';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './components/App';
-import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(<App />, document.getElementById('root'));
 

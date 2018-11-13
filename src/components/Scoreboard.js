@@ -11,7 +11,7 @@ class Scoreboard extends Component {
           Scoreboard
         </h2>
 
-        <table>
+        <table className="pure-table">
           <thead>
             <tr>
               <th>Player</th>
