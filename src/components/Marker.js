@@ -10,7 +10,7 @@ class Marker extends Component {
       <img
         alt={marker}
         height="100%"
-        src={`/marker_${marker}.png`}
+        src={`marker_${marker.toLowerCase()}.png`}
         width="100%"
       />
     )
